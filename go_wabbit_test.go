@@ -1,4 +1,4 @@
-package go_wabbit
+package gowabbit
 
 import (
 	"fmt"
@@ -6,13 +6,7 @@ import (
 	"time"
 )
 
-var Vowpal = Wabbit{
-	tcpPort:   26542,
-	children:  13,
-	binpath:   "/usr/local/bin/vw",
-	modelPath: "/Users/stephenwhitworth/data-science/FraudPrediction/data.model",
-	quiet:     false,
-}
+var Vowpal = NewWabbit(26542, 13, "/usr/local/bin/vw", "/model/directory/here", true)
 
 func TestPresence(t *testing.T) {
 	err := Vowpal.checkPresence()
@@ -47,7 +41,6 @@ func TestRun(t *testing.T) {
 
 	err = Vowpal.KillDaemonWabbit()
 	if err != nil {
-		fmt.Println(err)
 		t.Error(err)
 	}
 }
